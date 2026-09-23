@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Untuk Kamu 💖</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --night: #1a0619;
+    --wine: #4a0f3a;
+    --rose: #ff4f81;
+    --blush: #ffc2d4;
+    --gold: #ffdcae;
+    --text: #fff3f7;
+    --script: "Great Vibes", "Snell Roundhand", "Brush Script MT", cursive;
+    --body: "Quicksand", "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: var(--body);
+    color: var(--text);
+    background: var(--night);
+    overflow: hidden;
+  }
+
+  /* ---------- LATAR BELAKANG ---------- */
+  .bg {
+    position: fixed; inset: 0; z-index: 0; overflow: hidden;
+    background:
+      radial-gradient(90% 60% at 20% 10%, #7a1c56 0%, transparent 60%),
+      radial-gradient(80% 60% at 85% 90%, #8f2447 0%, transparent 60%),
+      linear-gradient(160deg, #240a26 0%, var(--wine) 55%, #2a0a26 100%);
+  }
+  .blob {
+    position: absolute; border-radius: 50%; filter: blur(70px); opacity: .55;
+    animation: drift 18s ease-in-out infinite alternate;
+  }
+  .blob.b1 { width: 340px; height: 340px; background: #ff5e9a; top: -80px; left: -90px; }
+  .blob.b2 { width: 380px; height: 380px; background: #b13cff; bottom: -120px; right: -100px; opacity: .35; animation-duration: 22s; }
+  .blob.b3 { width: 260px; height: 260px; background: #ffb07a; top: 45%; left: 55%; opacity: .25; animation-duration: 26s; }
+  @keyframes drift {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(40px, 60px) scale(1.15); }
+  }
+
+  .stars { position: absolute; inset: 0; }
+  .star {
+    position: absolute; width: 3px; height: 3px; border-radius: 50%;
+    background: #fff; opacity: .0; animation: twinkle 4s ease-in-out infinite;
+  }
+  @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.6); } 50% { opacity: .9; transform: scale(1.3); } }
+
+  .floaters { position: absolute; inset: 0; pointer-events: none; }
+  .floater {
+    position: absolute; bottom: -40px; color: var(--rose);
+    animation: rise linear forwards; user-select: none;
+  }
+  @keyframes rise {
+    0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+    10%  { opacity: var(--o, .5); }
+    90%  { opacity: var(--o, .5); }
+    100% { transform: translateY(-115vh) translateX(var(--dx, 30px)) rotate(var(--rot, 40deg)); opacity: 0; }
+  }
+
+  /* ---------- LAYAR / HALAMAN ---------- */
+  .screen {
+    position: fixed; inset: 0; z-index: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: max(24px, env(safe-area-inset-top)) 22px max(24px, env(safe-area-inset-bottom));
+    overflow-y: auto; text-align: center;
+    opacity: 0; visibility: hidden; transform: scale(.98);
+    transition: opacity .7s ease, transform .7s ease, visibility 0s linear .7s;
+  }
+  .screen.active {
+    opacity: 1; visibility: visible; transform: scale(1);
+    transition: opacity .7s ease, transform .7s ease, visibility 0s;
+  }
+
+  h1, h2 {
+    font-family: var(--script); font-weight: 400; line-height: 1.1;
+    color: var(--blush); text-shadow: 0 0 28px rgba(255, 79, 129, .55);
+  }
+  h1 { font-size: clamp(3rem, 12vw, 4.6rem); }
+  h2 { font-size: clamp(2.6rem, 9vw, 3.8rem); }
+
+  /* ---------- HALAMAN 1 : HATI ---------- */
+  #s1 { cursor: pointer; }
+  #s1 .title { margin-bottom: 10px; }
+  .heart-wrap { position: relative; width: min(66vw, 300px); aspect-ratio: 1; margin: 12px 0 18px; }
+  .heart-wrap::before {
+    content: ""; position: absolute; inset: -22%; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 79, 129, .55) 0%, transparent 65%);
+    animation: halo 1.6s ease-in-out infinite;
+  }
+  .heart-wrap::after {
+    content: ""; position: absolute; inset: 0; border-radius: 50%;
+    border: 1px solid rgba(255, 194, 212, .35);
+    animation: ring 2.4s ease-out infinite;
+  }
+  .heart-svg {
+    position: relative; width: 100%; height: 100%;
+    filter: drop-shadow(0 12px 30px rgba(255, 60, 120, .6));
+    animation: beat 1.6s ease-in-out infinite; transform-origin: center;
+  }
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.09); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.06); }
+    70% { transform: scale(1); }
+  }
+  @keyframes halo { 0%, 100% { opacity: .55; transform: scale(.96); } 14% { opacity: 1; transform: scale(1.08); } }
+  @keyframes ring { 0% { transform: scale(.85); opacity: .8; } 100% { transform: scale(1.35); opacity: 0; } }
+
+  .hint {
+    font-size: .95rem; letter-spacing: .04em; color: var(--gold); opacity: .9;
+    animation: breathe 2.4s ease-in-out infinite;
+  }
+  @keyframes breathe { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
+
+  /* ---------- KARTU KACA ---------- */
+  .card {
+    width: min(100%, 460px);
+    background: linear-gradient(160deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .05));
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: 28px;
+    padding: 34px 26px 30px;
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 24px 60px rgba(10, 0, 15, .45), inset 0 1px 0 rgba(255, 255, 255, .25);
+  }
+
+  /* ---------- HALAMAN 2 : KATA-KATA ---------- */
+  .letter { margin: 22px 0 8px; text-align: left; }
+  .letter p {
+    font-size: 1.02rem; line-height: 1.75; font-weight: 500; color: #ffeaf1;
+    margin-bottom: 14px; opacity: 0; transform: translateY(10px);
+  }
+  .letter p.last {
+    font-family: var(--script); font-size: 1.9rem; line-height: 1.3; text-align: center;
+    color: var(--gold); margin-top: 20px; margin-bottom: 4px;
+  }
+  .screen.active .letter p { animation: reveal 1s ease forwards; animation-delay: var(--d, 0s); }
+  @keyframes reveal { to { opacity: 1; transform: none; } }
+
+  /* ---------- TOMBOL ---------- */
+  .btn {
+    font-family: var(--body); font-weight: 700; font-size: 1.05rem; letter-spacing: .02em;
+    color: #fff; border: none; cursor: pointer;
+    padding: 15px 38px; border-radius: 999px;
+    background: linear-gradient(135deg, #ff6f9c, #ff3d77 55%, #e02a63);
+    box-shadow: 0 10px 28px rgba(255, 61, 119, .45), inset 0 1px 0 rgba(255, 255, 255, .35);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(255, 61, 119, .6), inset 0 1px 0 rgba(255, 255, 255, .35); }
+  .btn:active { transform: scale(.97); }
+  .btn:focus-visible, .chip:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--gold); outline-offset: 3px;
+  }
+  .btn.ghost {
+    background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .35);
+    box-shadow: none; color: var(--blush);
+  }
+
+  #s2 .next { margin-top: 22px; opacity: 0; }
+  #s2.active .next { animation: reveal .9s ease forwards; animation-delay: var(--dn, 8s); }
+
+  /* ---------- HALAMAN 3 : PERTANYAAN ---------- */
+  .question {
+    font-family: var(--script); font-size: clamp(2.5rem, 10vw, 3.6rem); line-height: 1.15;
+    color: var(--blush); text-shadow: 0 0 26px rgba(255, 79, 129, .5); margin: 8px 0 8px;
+  }
+  .subq { color: #ffdbe7; font-weight: 500; margin-bottom: 26px; min-height: 1.6em; }
+  .answers {
+    display: flex; gap: 18px; align-items: center; justify-content: center;
+    min-height: 74px; flex-wrap: wrap;
+  }
+  #yes { transform: scale(var(--s, 1)); transition: transform .35s cubic-bezier(.3, 1.6, .5, 1), box-shadow .2s; }
+  #yes:hover { transform: scale(calc(var(--s, 1) * 1.05)); }
+  #no { transition: left .28s cubic-bezier(.3, 1.4, .5, 1), top .28s cubic-bezier(.3, 1.4, .5, 1); z-index: 20; }
+
+  /* ---------- HALAMAN 4 : BALASAN ---------- */
+  #s4 .card { padding-top: 30px; }
+  .lead { margin: 10px 0 20px; line-height: 1.65; font-weight: 500; color: #ffeaf1; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 14px; }
+  .chip {
+    font-family: var(--body); font-size: .85rem; font-weight: 600; cursor: pointer;
+    color: var(--blush); background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 194, 212, .4); border-radius: 999px; padding: 8px 14px;
+    transition: background .2s, transform .15s;
+  }
+  .chip:hover { background: rgba(255, 79, 129, .35); }
+  .chip:active { transform: scale(.96); }
+  textarea {
+    width: 100%; min-height: 128px; resize: vertical;
+    font-family: var(--body); font-size: 1rem; line-height: 1.6; color: #fff;
+    background: rgba(20, 0, 20, .35); border: 1px solid rgba(255, 255, 255, .28);
+    border-radius: 18px; padding: 16px; margin-bottom: 8px;
+  }
+  textarea::placeholder { color: rgba(255, 220, 232, .6); }
+  .error { color: #ffd0a8; font-size: .9rem; font-weight: 600; min-height: 1.4em; margin-bottom: 8px; }
+  .note { margin-top: 14px; font-size: .8rem; color: #ffcadb; opacity: .8; line-height: 1.5; }
+  .shake { animation: shake .4s; }
+  @keyframes shake { 20%, 60% { transform: translateX(-7px); } 40%, 80% { transform: translateX(7px); } }
+
+  /* ledakan hati saat menekan Ya */
+  .burst {
+    position: fixed; z-index: 50; pointer-events: none; color: var(--rose);
+    animation: fly 1.4s ease-out forwards;
+  }
+  @keyframes fly {
+    from { transform: translate(0, 0) scale(.4); opacity: 1; }
+    to   { transform: translate(var(--x), var(--y)) scale(1.4) rotate(var(--r)); opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    .letter p, #s2 .next { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Latar belakang -->
+<div class="bg" aria-hidden="true">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="stars" id="stars"></div>
+  <div class="floaters" id="floaters"></div>
+</div>
+
+<!-- HALAMAN 1 -->
+<section class="screen active" id="s1" aria-label="Halaman pembuka" tabindex="0">
+  <h1 class="title" id="judul1">Untuk Kamu</h1>
+  <div class="heart-wrap">
+    <svg class="heart-svg" viewBox="0 0 24 24" role="img" aria-label="Hati">
+      <defs>
+        <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ff9ab8"/>
+          <stop offset=".45" stop-color="#ff3d77"/>
+          <stop offset="1" stop-color="#b3123f"/>
+        </linearGradient>
+        <radialGradient id="hs" cx=".3" cy=".25" r=".5">
+          <stop offset="0" stop-color="#fff" stop-opacity=".75"/>
+          <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <path fill="url(#hg)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      <path fill="url(#hs)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+  </div>
+  <p class="hint">Sentuh hatinya, ada sesuatu untukmu</p>
+</section>
+
+<!-- HALAMAN 2 -->
+<section class="screen" id="s2" aria-label="Kata-kata untukmu">
+  <div class="card">
+    <h2 id="judul2">Untukmu, Sayang</h2>
+    <div class="letter" id="letter"></div>
+    <button class="btn next" id="lanjut1" type="button">Lanjut</button>
+  </div>
+</section>
+
+<!-- HALAMAN 3 -->
+<section class="screen" id="s3" aria-label="Pertanyaan">
+  <div class="card">
+    <p class="question">Apakah kamu juga cinta sama aku?</p>
+    <p class="subq" id="subq">Jawab dari hati ya…</p>
+    <div class="answers" id="answers">
+      <button class="btn" id="yes" type="button">Ya, aku cinta kamu 💖</button>
+      <button class="btn ghost" id="no" type="button">Tidak</button>
+    </div>
+  </div>
+</section>
+
+<!-- HALAMAN 4 -->
+<section class="screen" id="s4" aria-label="Balasan">
+  <div class="card">
+    <h2>Yeay, makasih ya 🥰</h2>
+    <p class="lead">Sekarang giliran kamu. Tulis balasanmu di bawah ini, lalu kirim langsung ke WhatsApp-ku.</p>
+
+    <div class="chips" id="chips">
+      <button class="chip" type="button">Aku juga sayang kamu 💕</button>
+      <button class="chip" type="button">Kamu rumahku 🏡💖</button>
+      <button class="chip" type="button">Makasih ya, aku terharu 🥹</button>
+    </div>
+
+    <textarea id="balasan" maxlength="600" placeholder="Tulis balasanmu di sini…" aria-label="Balasan kamu"></textarea>
+    <p class="error" id="error" role="alert"></p>
+
+    <button class="btn" id="kirim" type="button">Kirim ke WhatsApp 💌</button>
+    <p class="note">Tombol ini akan membuka WhatsApp dengan balasanmu sudah terisi. Tinggal tekan kirim di sana.</p>
+  </div>
+</section>
+
+<script>
+/* =====================================================
+   ✏️  PENGATURAN — UBAH BAGIAN INI SAJA
+   ===================================================== */
+const CONFIG = {
+  // Nomor WhatsApp tujuan. Awali dengan 62 (tanpa 0 dan tanpa +).
+  // Contoh: 0812-3456-7890  →  "6281234567890"
+  waNumber: "6281234567890",
+
+  // Nama panggilan pacarmu (dipakai di halaman & pesan WhatsApp)
+  namaPacar: "Sayang",
+
+  // Kata-kata di halaman 2. {nama} akan diganti nama panggilan di atas.
+  judul: "Untukmu, {nama}",
+  pesan: [
+    "Hai, {nama}. Aku nggak pandai merangkai kata, tapi hari ini aku ingin bilang sesuatu yang sudah lama kusimpan.",
+    "Terima kasih sudah hadir dan menjadi tempat paling nyaman untuk hatiku pulang. Bersamamu, hal-hal sederhana terasa istimewa: tawa kecilmu, cerita-ceritamu, bahkan diam kita berdua.",
+    "Kamu sabar saat aku belum bisa jadi yang terbaik, dan tetap tinggal saat aku belum sempurna. Itu yang membuatku ingin terus belajar jadi orang yang pantas kamu banggakan.",
+    "Apa pun yang menanti di depan sana, aku ingin tetap jadi orang yang menggenggam tanganmu.",
+    "Aku sayang kamu. Hari ini, besok, dan seterusnya. 💖"
+  ],
+
+  // Kalimat pada halaman 3 saat tombol "Tidak" mencoba ditekan
+  tolak: [
+    "Yakin? 🥺",
+    "Coba pikir lagi deh…",
+    "Tombolnya kabur lho 😜",
+    "Jangan gitu dong, aku sedih 😢",
+    "Klik “Ya” aja ya, please 💖"
+  ]
+};
+/* ===================================================== */
+
+const $ = (s) => document.querySelector(s);
+const nama = CONFIG.namaPacar;
+const isi = (t) => t.replaceAll("{nama}", nama);
+
+/* ---------- Latar: bintang & hati melayang ---------- */
+(function buatLatar() {
+  const stars = $("#stars");
+  for (let i = 0; i < 40; i++) {
+    const s = document.createElement("span");
+    s.className = "star";
+    s.style.left = Math.random() * 100 + "%";
+    s.style.top = Math.random() * 100 + "%";
+    s.style.animationDelay = (Math.random() * 4).toFixed(2) + "s";
+    s.style.animationDuration = (3 + Math.random() * 3).toFixed(2) + "s";
+    stars.appendChild(s);
+  }
+  const box = $("#floaters");
+  const simbol = ["♥", "❤", "♡", "✦"];
+  function satu() {
+    const f = document.createElement("span");
+    f.className = "floater";
+    f.textContent = simbol[Math.floor(Math.random() * simbol.length)];
+    const dur = 9 + Math.random() * 9;
+    f.style.left = Math.random() * 100 + "%";
+    f.style.fontSize = (12 + Math.random() * 26) + "px";
+    f.style.animationDuration = dur + "s";
+    f.style.setProperty("--dx", (Math.random() * 120 - 60) + "px");
+    f.style.setProperty("--rot", (Math.random() * 90 - 45) + "deg");
+    f.style.setProperty("--o", (0.25 + Math.random() * 0.4).toFixed(2));
+    f.style.color = ["#ff4f81", "#ff9ab8", "#ffc2d4", "#ffdcae"][Math.floor(Math.random() * 4)];
+    box.appendChild(f);
+    setTimeout(() => f.remove(), dur * 1000);
+  }
+  for (let i = 0; i < 8; i++) setTimeout(satu, i * 350);
+  setInterval(satu, 900);
+})();
+
+/* ---------- Navigasi antar halaman ---------- */
+const screens = [...document.querySelectorAll(".screen")];
+function go(i) {
+  screens.forEach((s, idx) => s.classList.toggle("active", idx === i));
+  if (i === 1) mainkanSurat();
+  if (i === 3) setTimeout(() => $("#balasan").focus({ preventScroll: true }), 800);
+}
+
+/* Halaman 1 → 2 */
+$("#judul1").textContent = "Untuk Kamu";
+$("#s1").addEventListener("click", () => go(1));
+$("#s1").addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") go(1); });
+
+/* ---------- Halaman 2: kata-kata ---------- */
+$("#judul2").textContent = isi(CONFIG.judul);
+const letter = $("#letter");
+CONFIG.pesan.forEach((t, i) => {
+  const p = document.createElement("p");
+  p.textContent = isi(t);
+  if (i === CONFIG.pesan.length - 1) p.classList.add("last");
+  letter.appendChild(p);
+});
+function mainkanSurat() {
+  const ps = letter.querySelectorAll("p");
+  ps.forEach((p, i) => p.style.setProperty("--d", (0.5 + i * 1.5) + "s"));
+  $("#s2").style.setProperty("--dn", (0.5 + ps.length * 1.5) + "s");
+}
+$("#lanjut1").addEventListener("click", () => go(2));
+
+/* ---------- Halaman 3: Ya / Tidak ---------- */
+const yes = $("#yes"), no = $("#no"), subq = $("#subq");
+let percobaan = 0;
+
+function kabur(e) {
+  if (e) { e.preventDefault(); e.stopPropagation(); }
+  percobaan++;
+
+  // tombol "Tidak" melayang bebas di seluruh layar
+  no.style.position = "fixed";
+  const pad = 14;
+  const w = no.offsetWidth, h = no.offsetHeight;
+  const yr = yes.getBoundingClientRect();
+  let x, y, n = 0;
+  do {
+    x = pad + Math.random() * Math.max(1, innerWidth - w - pad * 2);
+    y = pad + Math.random() * Math.max(1, innerHeight - h - pad * 2);
+    n++;
+  } while (
+    n < 40 &&
+    x < yr.right + 12 && x + w > yr.left - 12 && y < yr.bottom + 12 && y + h > yr.top - 12
+  );
+  no.style.left = x + "px";
+  no.style.top = y + "px";
+
+  // tombol "Ya" makin besar
+  yes.style.setProperty("--s", Math.min(1 + percobaan * 0.07, 1.5));
+
+  subq.textContent = CONFIG.tolak[Math.min(percobaan - 1, CONFIG.tolak.length - 1)];
+}
+["pointerenter", "pointerdown", "touchstart", "click", "focus"].forEach((ev) =>
+  no.addEventListener(ev, kabur, { passive: false })
+);
+
+yes.addEventListener("click", (e) => {
+  const r = yes.getBoundingClientRect();
+  ledakan(r.left + r.width / 2, r.top + r.height / 2);
+  setTimeout(() => go(3), 900);
+});
+
+function ledakan(cx, cy) {
+  for (let i = 0; i < 28; i++) {
+    const h = document.createElement("span");
+    h.className = "burst";
+    h.textContent = ["♥", "❤", "💖", "💗"][i % 4];
+    h.style.left = cx + "px";
+    h.style.top = cy + "px";
+    h.style.fontSize = (16 + Math.random() * 22) + "px";
+    const a = Math.random() * Math.PI * 2, d = 90 + Math.random() * 190;
+    h.style.setProperty("--x", Math.cos(a) * d + "px");
+    h.style.setProperty("--y", Math.sin(a) * d + "px");
+    h.style.setProperty("--r", (Math.random() * 120 - 60) + "deg");
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 1500);
+  }
+}
+
+/* ---------- Halaman 4: balasan → WhatsApp ---------- */
+const balasan = $("#balasan"), error = $("#error");
+document.querySelectorAll(".chip").forEach((c) =>
+  c.addEventListener("click", () => {
+    balasan.value = c.textContent;
+    error.textContent = "";
+    balasan.focus();
+  })
+);
+
+$("#kirim").addEventListener("click", () => {
+  const teks = balasan.value.trim();
+  if (!teks) {
+    error.textContent = "Tulis balasanmu dulu ya, atau pilih salah satu kalimat di atas.";
+    balasan.classList.remove("shake");
+    void balasan.offsetWidth;
+    balasan.classList.add("shake");
+    balasan.focus();
+    return;
+  }
+  const pesan =
+    "Halo! Ini balasan dari " + nama + " 💌\n\n" +
+    "Jawabanku: YA, aku juga cinta kamu 💖\n\n" +
+    teks;
+  const url = "https://wa.me/" + CONFIG.waNumber + "?text=" + encodeURIComponent(pesan);
+  const w = window.open(url, "_blank");
+  if (!w) window.location.href = url;
+});
+</script>
+</body>
+</html>
